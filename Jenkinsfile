@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'maven:3.3.9-jdk-8'
+      image 'maven:3.3.9-jdk-7'
     }
     
   }
@@ -20,7 +20,7 @@ mvn clean '''
     }
     stage('Report') {
       steps {
-        junit 'target/surefire-reports/*'
+        junit 'target/surefire-reports/**/*.xml'
         archiveArtifacts 'target/*.jar,target/*.hpi'
       }
     }
